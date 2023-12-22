@@ -46,6 +46,7 @@ class _RotatingCirclesScreenState extends State<RotatingCirclesScreen>
             RotatingCircle(animation: _animation),
             SizedBox(height: 20),
             RotatingCircle(animation: _animation),
+            RotatingCircle(animation: _animation),
           ],
         ),
       ),
