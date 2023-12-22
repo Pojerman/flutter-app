@@ -1,5 +1,6 @@
 // lib/screens/rotating_circles_screen.dart
 import 'package:flutter/material.dart';
+import 'dart:math';
 import '../widgets/rotating_circle.dart';
 
 class RotatingCirclesScreen extends StatefulWidget {
@@ -22,14 +23,14 @@ class _RotatingCirclesScreenState extends State<RotatingCirclesScreen>
     );
 
     _animation = Tween<double>(
-      begin: 0,
-      end: 1,
+      begin: 0.5,
+      end: 1.5,
     ).animate(_controller)
       ..addListener(() {
         setState(() {});
       });
 
-    _controller.repeat();
+    _controller.repeat(reverse: true);
   }
 
   @override
@@ -44,7 +45,7 @@ class _RotatingCirclesScreenState extends State<RotatingCirclesScreen>
           children: [
             RotatingCircle(animation: _animation),
             SizedBox(height: 20),
-            RotatingCircle(animation: _animation, reverse: true),
+            RotatingCircle(animation: _animation),
           ],
         ),
       ),
