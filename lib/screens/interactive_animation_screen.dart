@@ -86,7 +86,7 @@ class _ShapesScreenState extends State<ShapesScreen>
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shapes Screen'),
+        title: const Text('Анимация с иконками и шейдером'),
       ),
       body: Stack(
         children: [

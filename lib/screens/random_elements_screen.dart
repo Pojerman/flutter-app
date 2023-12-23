@@ -14,17 +14,14 @@ class _RandomElementsScreenState extends State<RandomElementsScreen> {
   @override
   void initState() {
     super.initState();
-    // Создаем 50 элементов при инициализации
-    for (int i = 0; i < 50; i++) {
-      _addRandomElement();
-    }
+    _addRandomElements();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Random Elements Screen'),
+        title: const Text('Много элементов'),
       ),
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -38,27 +35,27 @@ class _RandomElementsScreenState extends State<RandomElementsScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _addRandomElement,
+        onPressed: _addRandomElements,
         child: const Icon(Icons.add),
       ),
     );
   }
 
-  void _addRandomElement() {
+  void _addRandomElements() {
     final random = Random();
-    final randomNumber =
-        random.nextInt(3); // Генерация случайного числа (0, 1 или 2)
+    final numberOfElementsToAdd = random.nextInt(15) + 1;
 
     setState(() {
-      if (randomNumber == 0) {
-        // Добавление случайного текстового блока
-        elements.add(_buildRandomTextBlock());
-      } else if (randomNumber == 1) {
-        // Добавление случайной иконки
-        elements.add(_buildRandomIcon());
-      } else {
-        // Добавление случайного контейнера с цветом
-        elements.add(_buildRandomColorContainer());
+      for (int i = 0; i < numberOfElementsToAdd; i++) {
+        final randomNumber = random.nextInt(3);
+
+        if (randomNumber == 0) {
+          elements.insert(0, _buildRandomTextBlock());
+        } else if (randomNumber == 1) {
+          elements.insert(0, _buildRandomIcon());
+        } else {
+          elements.insert(0, _buildRandomColorContainer());
+        }
       }
     });
   }

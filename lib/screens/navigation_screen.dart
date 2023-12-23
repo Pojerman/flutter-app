@@ -11,15 +11,16 @@ class NavigationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Navigation Test'),
+        title: const Text('Тестовое приложение'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Welcome to the Start Screen!'),
+            const Text('Добро пожаловать на главный экран!'),
+            const SizedBox(height: 16.0),
             CustomButton(
-              buttonText: 'Go to Second Screen',
+              buttonText: 'Карточки с текстом',
               onPressed: () {
                 Navigator.push(
                   context,
@@ -46,8 +47,9 @@ class NavigationScreen extends StatelessWidget {
                 );
               },
             ),
+            const SizedBox(height: 16.0),
             CustomButton(
-              buttonText: 'Go to Interactive Animation Screen',
+              buttonText: 'Анимация с иконками и шейдером',
               onPressed: () {
                 Navigator.push(
                   context,
@@ -57,8 +59,9 @@ class NavigationScreen extends StatelessWidget {
                 );
               },
             ),
+            const SizedBox(height: 16.0),
             CustomButton(
-              buttonText: 'Go to Interactive Animation Screen',
+              buttonText: 'Много элементов',
               onPressed: () {
                 Navigator.push(
                   context,
