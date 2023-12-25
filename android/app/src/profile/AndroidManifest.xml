@@ -3,5 +3,11 @@
          the Flutter tool needs it to communicate with the running application
          to allow setting breakpoints, to provide hot reload, etc.
     -->
+    <meta-data
+    android:name="io.flutter.embedding.android.EnableImpeller"
+    android:value="true" />
     <uses-permission android:name="android.permission.INTERNET"/>
+    <application 
+        android:usesCleartextTraffic="true">
+    </application>
 </manifest>

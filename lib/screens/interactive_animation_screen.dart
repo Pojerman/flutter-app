@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
@@ -42,7 +44,7 @@ class _ShapesScreenState extends State<ShapesScreen>
       animation: _animationController,
       builder: (context, child) {
         return Transform.rotate(
-          angle: _animationController.value * 2 * 3.1416,
+          angle: _animationController.value * 2 * pi,
           child: _buildGlassEffect(icon),
         );
       },

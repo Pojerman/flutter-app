@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/3d_model_screen.dart';
 import '../widgets/custom_button.dart';
 import 'random_elements_screen.dart';
 import 'second_screen.dart';
@@ -67,6 +68,18 @@ class NavigationScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => RandomElementsScreen(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 16.0),
+            CustomButton(
+              buttonText: '3D Model',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ModelScreen(),
                   ),
                 );
               },

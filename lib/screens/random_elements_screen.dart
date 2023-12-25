@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class RandomElementsScreen extends StatefulWidget {
-  const RandomElementsScreen({super.key});
+  const RandomElementsScreen({Key? key}) : super(key: key);
 
   @override
   _RandomElementsScreenState createState() => _RandomElementsScreenState();
 }
 
-class _RandomElementsScreenState extends State<RandomElementsScreen> {
+class _RandomElementsScreenState extends State<RandomElementsScreen>
+    with TickerProviderStateMixin {
   List<Widget> elements = [];
 
   @override
@@ -80,7 +81,7 @@ class _RandomElementsScreenState extends State<RandomElementsScreen> {
       margin: const EdgeInsets.all(8.0),
       padding: const EdgeInsets.all(16.0),
       color: Colors.lightGreen,
-      child: Icon(randomIcon, size: 36.0, color: Colors.white),
+      child: _RotatingIcon(icon: randomIcon, size: 36.0),
     );
   }
 
@@ -102,5 +103,49 @@ class _RandomElementsScreenState extends State<RandomElementsScreen> {
 
   Color _generateRandomColor() {
     return Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
+  }
+}
+
+class _RotatingIcon extends StatefulWidget {
+  final IconData icon;
+  final double size;
+
+  const _RotatingIcon({Key? key, required this.icon, required this.size})
+      : super(key: key);
+
+  @override
+  _RotatingIconState createState() => _RotatingIconState();
+}
+
+class _RotatingIconState extends State<_RotatingIcon>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..repeat(); // Делаем анимацию бесконечной
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        return Transform.rotate(
+          angle: _controller.value * 2 * pi,
+          child: Icon(widget.icon, size: widget.size, color: Colors.white),
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
