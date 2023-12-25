@@ -67,7 +67,7 @@ flutter:
     - lib/assets/images/screen2.jpg
     - lib/assets/images/screen3.jpg
     - lib/assets/images/screen4.jpg
-    - lib/assets/images/screen5.jpgв
+    - lib/assets/images/screen5.jpg
     - lib/assets/Astronaut.glb
 
   # To add assets to your application, add an assets section, like this:
