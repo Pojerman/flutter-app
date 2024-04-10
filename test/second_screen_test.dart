@@ -20,6 +20,3 @@ void main() {
         'Elapsed time for adding 5 items to SecondScreen: ${stopwatch.elapsedMilliseconds} ms');
   });
 }
-
-
-PS E:\code\flutter-app> flutter test
