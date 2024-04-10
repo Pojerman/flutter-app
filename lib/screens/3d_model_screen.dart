@@ -11,7 +11,7 @@ class ModelScreen extends StatelessWidget {
         body: const ModelViewer(
           backgroundColor: Color.fromARGB(0xFF, 0xEE, 0xEE, 0xEE),
           src: 'lib/assets/Astronaut.glb',
-          alt: 'A 3D model of an astronaut',
+          alt: 'A 3D model f an astronaut',
           ar: true,
           arModes: ['scene-viewer', 'webxr', 'quick-look'],
           autoRotate: true,
