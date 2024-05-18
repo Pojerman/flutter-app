@@ -30,6 +30,7 @@ class _SecondScreenState extends State<SecondScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        key: const Key('addPost'),
         onPressed: () {
           _addRandomContent();
         },

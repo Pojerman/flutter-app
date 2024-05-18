@@ -1,10 +1,11 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
 class ShapesScreen extends StatefulWidget {
-  const ShapesScreen({super.key});
+  const ShapesScreen({Key? key}) : super(key: key);
 
   @override
   _ShapesScreenState createState() => _ShapesScreenState();
@@ -14,6 +15,7 @@ class _ShapesScreenState extends State<ShapesScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   bool _reverseRotation = false;
+  Timer? _animationTimer;
 
   @override
   void initState() {
@@ -21,22 +23,33 @@ class _ShapesScreenState extends State<ShapesScreen>
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 5),
-    )..repeat(reverse: _reverseRotation);
+    );
   }
 
   @override
   void dispose() {
     _animationController.dispose();
+    _animationTimer?.cancel(); // Отменяем таймер перед удалением виджета
     super.dispose();
   }
 
-  Future<void> _startStopAnimation() async {
+  void _startStopAnimation() {
     if (_animationController.isAnimating) {
       _animationController.stop();
+      _animationTimer?.cancel(); // Отменяем таймер при остановке анимации
     } else {
       _animationController.repeat(reverse: _reverseRotation);
+      _startAnimationTimer(); // Запускаем таймер при запуске анимации
     }
     setState(() {});
+  }
+
+  void _startAnimationTimer() {
+    _animationTimer = Timer(const Duration(seconds: 1), () {
+      _animationController
+          .stop(); // Останавливаем анимацию по истечении 5 секунд
+      setState(() {}); // Обновляем состояние, чтобы обновить UI
+    });
   }
 
   Widget _buildRotatingGlassEffect(Icon icon) {
@@ -112,17 +125,11 @@ class _ShapesScreenState extends State<ShapesScreen>
           ),
         ],
       ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: _startStopAnimation,
-            child: Icon(_animationController.isAnimating
-                ? Icons.stop
-                : Icons.play_arrow),
-            heroTag: null,
-          ),
-        ],
+      floatingActionButton: FloatingActionButton(
+        tooltip: 'animBtn',
+        onPressed: _startStopAnimation,
+        child: Icon(
+            _animationController.isAnimating ? Icons.stop : Icons.play_arrow),
       ),
     );
   }

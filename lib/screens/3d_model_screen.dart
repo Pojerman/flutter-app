@@ -5,6 +5,7 @@ class ModelScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      key: const Key('3dModel'),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(title: const Text('Model Viewer')),
